@@ -1,0 +1,21 @@
+- hosts: localhost
+  vars:
+      source_key: "./.ssh/id_ed25519"
+      dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
+  pre_tasks:
+  - name: Update Apt
+    become: true
+    apt:
+      force_apt_get: true
+      update_cache: true
+      state: present
+    tags:
+      - install
+      - core
+  tasks:
+    - include_tasks: tasks/ssh.yml
+    - include_tasks: tasks/dotfiles.yml
+    - include_tasks: tasks/fish-setup.yml
+    - include_tasks: tasks/node-setup.yml
+    - include_tasks: tasks/npm-package.yml
+    - include_tasks: tasks/nvim-setup.yml

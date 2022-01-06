@@ -1,0 +1,7 @@
+- name: Install nodejs and npm
+  shell: nvm install lts
+  tags:
+    - install
+    - node
+
+  

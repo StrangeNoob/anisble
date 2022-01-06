@@ -1,0 +1,35 @@
+- name: Install brew
+  shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  become: true
+  tag: 
+    - brew
+    - install
+
+- name: Adding to the .profile
+  shell: echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/strangenoob/.profile && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  tag: 
+    - brew
+    - install
+
+- name: Get Dependencies for Neovim
+  shell: brew install --HEAD tree-sitter luajit neovim
+  tag: 
+    - brew
+    - install
+    - nvim
+    - luajit
+    - tree-sitter
+
+- name: Installing vim-plug
+  shell: sh -c 'curl -fLo $HOME/.local/share/nvim/site/autoload/plug.vim --create-dirs \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  tag:
+    - install 
+    - nvim
+    - vim-plug
+
+- name: Installing Vim Plugins
+  shell: nvim +PlugInstall
+  tag:
+    - install 
+    - nvim
+    - vim plugins

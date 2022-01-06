@@ -1,0 +1,20 @@
+- name: Install Exa
+  apt: name=exa
+  tags: &tags_for_fish_tasks [ 'install', 'productivity', 'dotfiles', 'fish' ]
+    
+- name: Install Fish
+  apt: name=fish
+  tags: *tags_for_fish_tasks 
+    
+- name: Change shell to fish
+  shell: chsh -s $(which fish)
+  tags: *tags_for_fish_tasks
+
+- name: Installing Fisher for Configuration
+  shell: curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
+  tags: *tags_for_fish_tasks
+
+- name: Adding Fish Plugin
+  shell: "fisher install {{item}}"
+  with_items: ["pure-fish/pure","jethrokuan/z","jhillyerd/plugin-git","jorgebucaran/nvm.fish"]
+  tags: *tags_for_fish_tasks
