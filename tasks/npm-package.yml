@@ -33,10 +33,3 @@
   tags:
     - install
     - node
-- name: Install Diagnostic-LanguageServer
-  npm:
-    name: diagnostic-languageserver
-    global: yes
-  tags:
-    - install
-    - node

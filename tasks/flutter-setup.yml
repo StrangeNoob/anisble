@@ -1,13 +1,11 @@
 - name: Cloning Flutter from git
   gansible.builtin.git:
-    repo: 'https://github.com/flutter/flutter.git'
+    repo: "https://github.com/flutter/flutter.git"
     dest: "{{ lookup('env', 'HOME') }}/flutter"
     recursive: yes
     update: yes
     accept_hostkey: yes
     version: stable
   tags:
-   - install
-   - flutter
-
-- name: 
+    - install
+    - flutter

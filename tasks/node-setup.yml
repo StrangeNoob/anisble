@@ -1,7 +1,11 @@
+- name: Install NVM
+  shell: wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | zsh
+  tags:
+    - install
+    - node
+
 - name: Install nodejs and npm
   shell: nvm install lts
   tags:
     - install
     - node
-
-  
